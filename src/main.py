@@ -11,6 +11,7 @@ ATHENA_CLIENT_ID = os.getenv("ATHENA_CLIENT_ID", "your-client-id-here")
 ATHENA_CLIENT_SECRET = os.getenv("ATHENA_CLIENT_SECRET", 
 "your-client-secret-here")
 ATHENA_REDIRECT_URI = os.getenv("ATHENA_REDIRECT_URI", 
+    
 "https://athena-sarcrisk-fhir-api.ashystone-7ad37a18.eastus.azurecontainerapps.io/callback")
 ATHENA_TOKEN_URL = f"{ATHENA_API_BASE_URL}/oauth2/token"
 
@@ -27,11 +28,10 @@ def read_root():
 @app.get("/callback")
 async def callback(code: str = None, state: str = None):
     """
-    OAuth2 callback endpoint for athenahealth authentication
+    OAuth2 callback endpoint for athenahealth authentication.
     
     This endpoint receives the authorization code from athenahealth after 
-user authentication
-    and exchanges it for an access token.
+    user authentication and exchanges it for an access token.
     """
     if not code:
         return {"error": "Authorization code missing"}
